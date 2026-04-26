@@ -1,5 +1,7 @@
 # 🔐 Digital Evidence Management System (DEMS)
 
+A secure system for managing digital evidence with hash-based integrity verification, audit logs, and chain of custody tracking.
+
 ## 📌 Project Overview
 
 The **Digital Evidence Management System (DEMS)** is a secure and
@@ -10,7 +12,7 @@ maintaining **data integrity, auditability, and chain of custody**.
 This system simulates real-world forensic workflows where digital
 evidence must remain **tamper-proof and traceable**.
 
-------------------------------------------------------------------------
+---
 
 ## 📸 Screenshots
 
@@ -98,29 +100,33 @@ Maintains detailed logs of all system activities for transparency and accountabi
     -   Hash visualization
     -   Logs tracking
 
-------------------------------------------------------------------------
+---
 
 ## 🛠️ Tech Stack
 
-  Layer      Technology Used
-  ---------- -----------------------
-  Frontend   HTML, CSS, JavaScript
-  Backend    Fast API
-  Database   MySQL
-  Security   SHA-256 Hashing
+| Layer    | Technology Used       |
+| -------- | --------------------- |
+| Frontend | HTML, CSS, JavaScript |
+| Backend  | FastAPI               |
+| Database | MySQL                 |
+| Security | SHA-256 Hashing       |
 
-------------------------------------------------------------------------
+---
 
 ## 📁 Project Structure
 
-    DEMS/
-    │── frontend/        # UI Components
-    │── backend/         # Server & API
-        │── uploads/         # Stored Evidence Files
-    │── database/        # DB Config / Schema
-    │── README.md
+```
+DEMS/
+│── frontend/          # UI components
+│── backend/           # API & server logic
+│   └── uploads/       # Stored evidence files
+│── database/          # Database schema & config
+│── screenshots/       # Project screenshots
+│── README.md
+```
 
-------------------------------------------------------------------------
+
+---
 
 ## ⚙️ Installation & Setup
 
@@ -134,25 +140,28 @@ Maintains detailed logs of all system activities for transparency and accountabi
 
 ### 3️⃣ Install Dependencies
 
+    #### Frontend
     npm install
+
+    #### Backend
     pip install -r backend/requirements.txt
 
 ### 4️⃣ Run Servers
 
     ./start_project.bat
 
-------------------------------------------------------------------------
+---
 
 ## 🔍 System Workflow
 
-1.  User uploads evidence 📤\
-2.  System generates unique **hash value** 🔐\
-3.  File is stored in backend storage 📂\
-4.  Hash is stored in database 🧠\
-5.  Any change in file → hash mismatch detected ⚠️\
+1.  User uploads evidence 📤
+2.  System generates unique **hash value** 🔐
+3.  File is stored in backend storage 📂
+4.  Hash is stored in database 🧠
+5.  Any change in file → hash mismatch detected ⚠️
 6.  All actions logged in audit logs 📜
 
-------------------------------------------------------------------------
+---
 
 ## 🧪 Testing Guide
 
@@ -161,7 +170,7 @@ Maintains detailed logs of all system activities for transparency and accountabi
 -   Check audit logs for actions
 -   Test multiple users (if enabled)
 
-------------------------------------------------------------------------
+---
 
 ## 📊 Example Use Cases
 
@@ -170,7 +179,7 @@ Maintains detailed logs of all system activities for transparency and accountabi
 -   Secure Document Tracking
 -   Academic DBMS Demonstration Project
 
-------------------------------------------------------------------------
+---
 
 ## 🔮 Future Enhancements
 
@@ -179,7 +188,7 @@ Maintains detailed logs of all system activities for transparency and accountabi
 -   🔐 Advanced role-based authentication (JWT)\
 -   ☁️ Cloud storage integration
 
-------------------------------------------------------------------------
+---
 
 ## 🤝 Contributing
 
@@ -190,18 +199,18 @@ Contributions are welcome!
 3.  Make changes\
 4.  Submit a pull request
 
-------------------------------------------------------------------------
+---
 
 ## 📄 License
 
 This project is licensed under the **MIT License**.
 
-------------------------------------------------------------------------
+---
 
 ## 👨‍💻 Author
 
 Developed as part of a **DBMS Project (Digital Evidence System)**
 
-------------------------------------------------------------------------
+---
 
 ⭐ If you like this project, consider giving it a star!
