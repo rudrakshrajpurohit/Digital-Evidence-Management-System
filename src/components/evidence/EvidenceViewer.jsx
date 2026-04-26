@@ -1,6 +1,7 @@
 import React from 'react'
 import { X, Download } from 'lucide-react'
 import FilePreview from '../utils/FilePreview'
+import { evidenceService } from '../../services/evidenceService'
 
 const EvidenceViewer = ({ evidence, onClose }) => {
   if (!evidence) return null
@@ -16,7 +17,20 @@ const EvidenceViewer = ({ evidence, onClose }) => {
             <p className="text-xs text-gray-400 mt-0.5">{evidence.id} · {evidence.caseId}</p>
           </div>
           <div className="flex items-center gap-2">
-            <button className="btn-secondary flex items-center gap-1.5 text-sm">
+            <button
+              onClick={async () => {
+                try {
+                  const res = await evidenceService.verifyEvidence(evidence.id)
+                  alert(`Verification Status: ${res.status}\n\nStored Hash: ${res.stored_hash}\nComputed Hash: ${res.computed_hash}`)
+                } catch (err) {
+                  alert(`Verification failed: ${err.message}`)
+                }
+              }}
+              className="btn-primary flex items-center gap-1.5 text-sm"
+            >
+              Verify Integrity
+            </button>
+            <button className="btn-secondary flex items-center gap-1.5 text-sm" onClick={() => window.open(`http://127.0.0.1:8000/evidence/${evidence.id}/download`, '_blank')}>
               <Download className="w-4 h-4" />
               Download
             </button>

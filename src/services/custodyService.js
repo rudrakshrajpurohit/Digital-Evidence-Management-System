@@ -2,7 +2,7 @@ import api from './api'
 
 export const custodyService = {
   getCustody: async (evidenceId) => {
-    const response = await api.get(`/api/custody/${evidenceId}`)
+    const response = await api.get(`/audit/evidence/${evidenceId}/logs`)
     return response.data
   },
 

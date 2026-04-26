@@ -8,7 +8,7 @@ import LoadingSpinner from '../utils/LoadingSpinner'
 const EvidenceUploadPage = () => {
   const navigate = useNavigate()
   const fileRef = useRef(null)
-  const [form, setForm] = useState({ title: '', caseId: '', description: '' })
+  const [form, setForm] = useState({ evidenceName: '', caseTitle: '' })
   const [file, setFile] = useState(null)
   const [dragging, setDragging] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -30,24 +30,21 @@ const EvidenceUploadPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!form.title || !form.caseId || !file) {
+    if (!form.caseTitle || !file) {
       setToast({ type: 'error', message: 'Please fill in all required fields and select a file.' })
       return
     }
     setLoading(true)
     try {
       const fd = new FormData()
-      fd.append('title', form.title)
-      fd.append('caseId', form.caseId)
-      fd.append('description', form.description)
+      fd.append('case_title', form.caseTitle)
       fd.append('file', file)
       await evidenceService.uploadEvidence(fd)
       setSuccess(true)
       setToast({ type: 'success', message: 'Evidence uploaded successfully!' })
     } catch (err) {
-      // Simulate success in demo mode
-      setSuccess(true)
-      setToast({ type: 'success', message: 'Evidence uploaded successfully! (Demo mode)' })
+      console.error('Upload error:', err.response?.data)
+      setToast({ type: 'error', message: err.response?.data?.detail || err.message || 'Upload failed. Please try again.' })
     } finally {
       setLoading(false)
     }
@@ -65,7 +62,7 @@ const EvidenceUploadPage = () => {
         </p>
         <div className="flex gap-3 mt-2">
           <button onClick={() => navigate('/evidence')} className="btn-primary">View Evidence</button>
-          <button onClick={() => { setSuccess(false); setFile(null); setForm({ title: '', caseId: '', description: '' }) }} className="btn-secondary">
+          <button onClick={() => { setSuccess(false); setFile(null); setForm({ evidenceName: '', caseTitle: '' }) }} className="btn-secondary">
             Upload Another
           </button>
         </div>
@@ -82,47 +79,17 @@ const EvidenceUploadPage = () => {
 
       <form id="evidence-upload-form" onSubmit={handleSubmit} className="card space-y-5">
         <div>
-          <label htmlFor="evidence-title" className="block text-sm font-medium text-gray-300 mb-1.5">
-            Evidence Title <span className="text-red-400">*</span>
+          <label htmlFor="evidence-case-title" className="block text-sm font-medium text-gray-300 mb-1.5">
+            Case Title <span className="text-red-400">*</span>
           </label>
           <input
-            id="evidence-title"
-            name="title"
+            id="evidence-case-title"
+            name="caseTitle"
             className="input-field"
-            placeholder="e.g. Crime Scene Photo Set"
-            value={form.title}
+            placeholder="e.g. Robbery Investigation 2024"
+            value={form.caseTitle}
             onChange={handleChange}
             required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="evidence-case-id" className="block text-sm font-medium text-gray-300 mb-1.5">
-            Case ID <span className="text-red-400">*</span>
-          </label>
-          <input
-            id="evidence-case-id"
-            name="caseId"
-            className="input-field"
-            placeholder="e.g. CASE-2024-001"
-            value={form.caseId}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="evidence-description" className="block text-sm font-medium text-gray-300 mb-1.5">
-            Description
-          </label>
-          <textarea
-            id="evidence-description"
-            name="description"
-            rows={3}
-            className="input-field resize-none"
-            placeholder="Describe the evidence (optional)"
-            value={form.description}
-            onChange={handleChange}
           />
         </div>
 

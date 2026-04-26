@@ -37,16 +37,10 @@ const LoginPage = () => {
       login(data.user, data.token)
       navigate('/dashboard', { replace: true })
     } catch (err) {
-      // Fallback to mock auth for demo
-      const mockUser = MOCK_USERS[form.email.toLowerCase()]
-      if (mockUser && form.password === 'demo123') {
-        login(mockUser, 'mock-jwt-token-' + Date.now())
-        navigate('/dashboard', { replace: true })
+      if (err.response?.status === 401) {
+        setToast({ type: 'error', message: 'Invalid email or password.' })
       } else {
-        setToast({
-          type: 'error',
-          message: 'Invalid credentials. Try demo accounts below.',
-        })
+        setToast({ type: 'error', message: err.message || 'Failed to authenticate.' })
       }
     } finally {
       setLoading(false)
