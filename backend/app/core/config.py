@@ -2,10 +2,10 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     MYSQL_USER: str = "root"
-    MYSQL_PASSWORD: str = "root"
+    MYSQL_PASSWORD: str = "admin"
     MYSQL_HOST: str = "localhost"
     MYSQL_PORT: int = 3306
-    MYSQL_DATABASE: str = "digital_evidence_db"
+    MYSQL_DATABASE: str = "digital_evidence"
     
     SECRET_KEY: str = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
     ALGORITHM: str = "HS256"

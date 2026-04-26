@@ -14,13 +14,13 @@ const useEvidence = (params = {}) => {
       
       // Map backend data to UI format
       const mappedData = data.map(ev => ({
-        id: ev.evidence_id.toString(),
-        fileName: ev.file_name,
-        caseId: ev.case_id.toString(),
-        uploadDate: new Date(ev.created_at).toLocaleDateString(),
+        id: ev.evidence_id?.toString() || 'Unknown',
+        fileName: ev.evidence_name || ev.name || ev.file_name || 'Unknown File',
+        caseId: ev.case_id?.toString() || 'Unknown',
+        uploadDate: new Date(ev.uploaded_at || ev.created_at || Date.now()).toLocaleDateString(),
         status: 'Verified', // Backend ensures integrity via chain hashes natively
-        type: ev.file_type.includes('image') ? 'image' : ev.file_type.includes('video') ? 'video' : 'document',
-        uploadedBy: `User ${ev.uploaded_by}` // Replace with actual user info if joined
+        type: (ev.evidence_type || 'unknown').includes('image') ? 'image' : (ev.evidence_type || 'unknown').includes('video') ? 'video' : 'document',
+        uploadedBy: `User ${ev.uploaded_by || 'Unknown'}` // Replace with actual user info if joined
       }))
       
       setEvidence(mappedData)

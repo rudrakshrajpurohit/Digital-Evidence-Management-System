@@ -68,7 +68,7 @@ const AddCustodyEntry = ({ isOpen, onClose, evidenceId, onSuccess }) => {
               value={form.action}
               onChange={handleChange}
             >
-              {ACTION_TYPES.map((a) => <option key={a}>{a}</option>)}
+              {ACTION_TYPES.map((a) => <option key={a} value={a}>{a}</option>)}
             </select>
           </div>
 

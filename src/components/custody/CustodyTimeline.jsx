@@ -18,6 +18,8 @@ const CustodyTimeline = ({ custodyLog = [] }) => {
       <div className="space-y-1">
         {STEPS.map((step, i) => {
           const isComplete = completedActions.has(step.key)
+          // The active step is the first one that is NOT complete
+          const isActive = !isComplete && (i === 0 || completedActions.has(STEPS[i-1].key))
           const isLast = i === STEPS.length - 1
           const Icon = step.icon
           const matchingLog = custodyLog.find((e) => e.action === step.key)
@@ -31,9 +33,11 @@ const CustodyTimeline = ({ custodyLog = [] }) => {
 
               <div className="flex items-start gap-4 pb-4">
                 {/* Step circle */}
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 border-2 z-10 ${
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 border-2 z-10 transition-colors ${
                   isComplete
                     ? 'bg-primary-600/20 border-primary-600 text-primary-400'
+                    : isActive
+                    ? 'bg-dark-700 border-primary-400 text-white shadow-[0_0_10px_rgba(96,165,250,0.3)]'
                     : 'bg-dark-700 border-dark-500 text-gray-600'
                 }`}>
                   {isComplete
@@ -42,7 +46,7 @@ const CustodyTimeline = ({ custodyLog = [] }) => {
                 </div>
 
                 <div className="pt-1.5 flex-1">
-                  <p className={`text-sm font-semibold ${isComplete ? 'text-white' : 'text-gray-500'}`}>
+                  <p className={`text-sm font-semibold transition-colors ${isComplete ? 'text-emerald-400' : isActive ? 'text-white' : 'text-gray-500'}`}>
                     {step.label}
                   </p>
                   <p className="text-xs text-gray-500">{step.description}</p>

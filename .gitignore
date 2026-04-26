@@ -1,0 +1,32 @@
+# 🔐 Environment files
+backend/.env
+
+# 📁 Uploads (evidence files)
+backend/uploads/
+
+# 🐍 Python
+backend/venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 🧠 Python cache (nested)
+**/__pycache__/
+
+# 📦 Node
+node_modules/
+
+# 📝 Logs
+*.log
+
+# 🧾 OS files
+.DS_Store
+Thumbs.db
+
+# 🧪 VS Code
+.vscode/
+
+# 🔥 Optional (build/dist)
+dist/
+build/
